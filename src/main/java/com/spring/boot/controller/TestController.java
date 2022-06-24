@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.boot.dao.UserRepository;
 import com.spring.boot.entities.Book;
 
+
+//CRUD API for Books
 @RestController
 public class TestController {
 
@@ -26,6 +28,7 @@ public class TestController {
 
 	HashMap<Integer, Book> cache = new HashMap<>();
 
+	//create books
 	@PostMapping("/postBook")
 	public ResponseEntity<Book> postUser(@RequestBody Book book) {
 
@@ -37,6 +40,8 @@ public class TestController {
 
 		return new ResponseEntity<Book>(saveBook, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	//Fetching Books form D.B
 
 	@GetMapping("/getBook/{id}")
 	public ResponseEntity<Optional<Book>> getUser(@PathVariable int id) {
@@ -48,6 +53,7 @@ public class TestController {
 		return new ResponseEntity<Optional<Book> >(HttpStatus.UNAUTHORIZED);
 	}
 
+	//Fetching All Books from D.B
 	@GetMapping("/getAllUser")
 	public ResponseEntity<Optional<List<Book>>> getAllUser() {
 
@@ -57,6 +63,8 @@ public class TestController {
 		}
 		return new ResponseEntity<Optional<List<Book>> >(getAllUser,HttpStatus.UNAUTHORIZED);
 	}
+	
+	//Updating Books in D.B
 
 	@PutMapping("/updateUser")
 	public Book updateUser(@RequestBody Book user) {
@@ -74,6 +82,7 @@ public class TestController {
 		return originlUser;
 	}
 
+	//Delete Books from D.B
 	@DeleteMapping("/deleteUser/{delete}")
 	public Book deleteUser(@PathVariable int delete) {
 
